@@ -1,0 +1,30 @@
+.AddTodo {
+    width: 50%;
+    text-align: left;
+    margin: 10px;
+    padding: 10px;
+}
+
+.AddTodoBody {
+    margin: 5px;
+    padding: 20px;
+    border: solid black 2px;
+    display: flex;
+    flex-direction: column;
+}
+
+.AddTodoBody .rowDiv {
+    margin: 10px 0;
+}
+
+.AddTodoBody .rowDiv span {
+    margin: 10px;
+}
+
+.AddTodoBody .rowDiv.title span {
+    margin: 10px;
+}
+
+.AddTodoBody .rowDiv.title.titleError input {
+    border: 1px solid red;
+}

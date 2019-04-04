@@ -1,0 +1,31 @@
+.AddUser {
+    text-align: left;
+    margin: 10px;
+    padding: 10px;
+}
+
+.AddUserBody {
+    margin: 5px;
+    padding: 20px;
+    border: solid black 2px;
+    display: flex;
+    flex-direction: column;
+}
+
+.AddUserBody .rowDiv {
+    margin: 10px 0;
+}
+
+.AddUserBody .rowDiv span {
+    margin: 10px;
+}
+
+.AddUserBody .rowDiv.name span,
+.AddUserBody .rowDiv.email span {
+    margin: 10px;
+}
+
+.AddUserBody .rowDiv.name.nameError input,
+.AddUserBody .rowDiv.email.emailError input {
+    border: 1px solid red;
+}

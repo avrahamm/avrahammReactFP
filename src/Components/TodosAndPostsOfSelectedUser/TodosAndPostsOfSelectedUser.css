@@ -1,0 +1,18 @@
+.TodosAndPosts .TodoComp,
+.TodosAndPosts .PostComp {
+    text-align: left;
+    border: solid black 1px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.TodosAndPosts .rowDiv .label {
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+.TodosAndPosts .rowDiv .content {
+    max-width: 70px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}

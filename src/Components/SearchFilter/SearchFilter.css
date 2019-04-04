@@ -1,0 +1,10 @@
+.SearchFilter {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.SearchFilter .rowDiv input[name="searchString"]  {
+    margin-right: 7px;
+}

@@ -1,0 +1,42 @@
+.UserComp {
+    text-align: left;
+    border: solid black 1px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.UserComp.userSelected {
+    background-color: orange;
+}
+.UserComp.completedTasks {
+    border: solid green 2px;
+}
+
+.UserComp.uncompletedTasks {
+    border: solid red 2px;
+}
+
+.UserComp .rowDiv.name .label,
+.UserComp .rowDiv.email .label {
+    display: inline-block;
+    width: 50px;
+}
+
+.UserComp .otherDataDiv .rowDiv .label{
+    display: inline-block;
+    width: 60px;
+}
+
+.UserComp .otherDataButton {
+     margin-right: 10px;
+    background-color: rosybrown;
+ }
+
+.UserComp .otherDataDiv {
+    background-color: #F9F9F9;
+    border: solid black 1px;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+}

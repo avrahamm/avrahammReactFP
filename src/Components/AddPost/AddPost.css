@@ -1,0 +1,32 @@
+.AddPost {
+    width: 50%;
+    text-align: left;
+    margin: 10px;
+    padding: 10px;
+}
+
+.AddPostBody {
+    margin: 5px;
+    padding: 20px;
+    border: solid black 2px;
+    display: flex;
+    flex-direction: column;
+}
+
+.AddPostBody .rowDiv {
+    margin: 10px 0;
+}
+
+.AddPostBody .rowDiv span {
+    margin: 10px;
+}
+
+.AddPostBody .rowDiv.title span,
+.AddPostBody .rowDiv.body span {
+    margin: 10px;
+}
+
+.AddPostBody .rowDiv.title.titleError input,
+.AddPostBody .rowDiv.body.bodyError input {
+    border: 1px solid red;
+}
