@@ -126,7 +126,7 @@ const mapDispatchToProps = dispatch => {
 const goBack = (obj) => {
     let selectedUSerId = obj.state.selectedUserId;
     if( selectedUSerId ) {
-        obj.props.history.push(`/user/${selectedUSerId}`);
+        obj.props.history.goBack();
     }
     else {
         obj.props.history.push(`/`);
