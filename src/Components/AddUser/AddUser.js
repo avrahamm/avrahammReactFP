@@ -10,7 +10,9 @@ class AddUser extends Component {
         this.state = {
             name:"",
             email:"",
-            internalStateChange:false
+            selectedUserId:0,
+            internalStateChange:false,
+            takenFromLocalStorage:false
         };
     }
 
@@ -24,9 +26,19 @@ class AddUser extends Component {
             return { internalStateChange:false};
         }
         else {
-            return {
+            let updatedState = {
                 selectedUserId: selectedUserId
             };
+            if( !prevState.takenFromLocalStorage) {
+                //TODO! use constants
+                updatedState = {
+                    name:localStorage[`addUser-name`],
+                    email:localStorage[`addUser-email`],
+                    selectedUserId: selectedUserId,
+                    takenFromLocalStorage:true
+                };
+            }
+            return updatedState;
         }
     }
 
@@ -35,6 +47,7 @@ class AddUser extends Component {
         let inputName = e.target.name;
         let value = e.target.value;
         this.setState({[inputName]:value, internalStateChange: true});
+        localStorage[`addUser-${inputName}`] = value;
     }
 
     render() {
@@ -114,6 +127,9 @@ const mapDispatchToProps = dispatch => {
                 return;
             }
             dispatch({ type: 'ADD_USER', name: name, email:email });
+            // reset relevant local storage.
+            localStorage[`addUser-name`] = "";
+            localStorage[`addUser-email`] = "";
             goBack(obj);
         }
     }
