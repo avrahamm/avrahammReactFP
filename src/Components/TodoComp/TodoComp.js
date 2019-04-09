@@ -32,7 +32,7 @@ class TodoComp extends Component {
     {
         // state update forces re-rendering.
         this.setState({internalStateChange: true});
-        this.props.markTodoAsCompleted(this.state.todo.userId, this.state.todo.id);
+        this.props.setTodoStatus(this.state.todo.userId, this.state.todo.id,true);
     }
 
     capitalizeFirstLetter = (string) => {
@@ -70,9 +70,9 @@ class TodoComp extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         // dispatching mark todoItem as completed
-        markTodoAsCompleted: (userId, todoId) =>
+        setTodoStatus: (userId, todoId,status) =>
         {
-            dispatch({ type: 'SET_TODO_STATUS',userId:userId, todoId:todoId,completedValue:true })
+            dispatch({ type: 'SET_TODO_STATUS',userId:userId, todoId:todoId,completedValue:status })
         },
     }
 }
