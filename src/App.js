@@ -21,20 +21,18 @@ class App extends Component {
 //@link:https://stackoverflow.com/questions/24586110/resolve-promises-one-after-another-i-e-in-sequence
         let p = Promise.resolve();
         p.then(() => {
-            let r1 = DAL.getData('https://jsonplaceholder.typicode.com/users')
+            return DAL.getData('https://jsonplaceholder.typicode.com/users')
                 .then(resp => {
                     //console.log(resp.data);
                     this.props.dispatch({type:'INIT_USERS',  'newData':resp.data } )
                 } );
-            return r1;
         })
         .then(() => {
-            let r2 = DAL.getData('https://jsonplaceholder.typicode.com/posts')
+            return DAL.getData('https://jsonplaceholder.typicode.com/posts')
                 .then(resp => {
                     //console.log(resp.data);
                     this.props.dispatch({type:'INIT_POSTS', 'newData':resp.data } )
                 } );
-            return r2;
         })
         .then(() => {
             return DAL.getData('https://jsonplaceholder.typicode.com/todos')
@@ -43,9 +41,10 @@ class App extends Component {
                     this.props.dispatch({type:'INIT_TODOS', 'newData':resp.data } )
                 } );
         })
-            .then(() => {
-                this.props.dispatch({type:'INIT_COMMIT',  } )
-            })
+        .then(() => {
+            // To commit end of initialization.
+            return this.props.dispatch({type:'INIT_COMMIT',  } )
+        })
         ;
     }
 

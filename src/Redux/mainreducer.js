@@ -46,6 +46,7 @@ const mainreducer = (state = {
             return state;
         }
         case 'INIT_COMMIT' : {
+            // broadcast when todos and posts are ready to save unneeded re rendering.
             state = {...state}; // mutation and broadcasting
             return state;
         }
