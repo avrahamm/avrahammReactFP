@@ -53,10 +53,12 @@ class UserComp extends Component {
 
     hideShowData  = ( ) =>
     {
-        this.setState({otherDataVisible:false});
         if( this.state.otherDataVisible) {
             //console.log("hideShowData");
-            this.setState({otherDataVisible: false, internalStateChange: true});
+            this.setState(curState =>
+            {
+                return {otherDataVisible: false, internalStateChange: true}
+            });
         }
     }
 
