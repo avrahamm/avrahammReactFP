@@ -11,7 +11,8 @@ and is not saved to next page load.
 
 Users are on the left side, todos and posts on the right side.
 </p>
-Functionality:
+
+## Functionality:
 - add a  user, todo or a post.
 - filtering users.
 - Editing user data.
