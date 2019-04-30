@@ -1,10 +1,10 @@
 ## Delpoyed 
 to https://avrahammreactfp.firebaseapp.com/
 ## Description:
-The data is taken from https://jsonplaceholder.typicode.com/
-https://jsonplaceholder.typicode.com/users
-https://jsonplaceholder.typicode.com/todos
-https://jsonplaceholder.typicode.com/posts
+The data is taken from 
+- https://jsonplaceholder.typicode.com/users
+- https://jsonplaceholder.typicode.com/todos
+- https://jsonplaceholder.typicode.com/posts
 The data is fetched and stored in Redux store on each page load
 and is not saved to next page load.
 
