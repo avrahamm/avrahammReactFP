@@ -1,4 +1,23 @@
-Delpoyed to https://avrahammreactfp.firebaseapp.com/
+## Delpoyed 
+to https://avrahammreactfp.firebaseapp.com/
+## Description:
+The data is taken from https://jsonplaceholder.typicode.com/
+https://jsonplaceholder.typicode.com/users
+https://jsonplaceholder.typicode.com/todos
+https://jsonplaceholder.typicode.com/posts
+The data is fetched and stored in Redux store on each page load
+and is not saved to next page load.
+
+Users are on the left side, todos and posts on the right side.
+
+Functionality:
+- add a  user, todo or a post.
+- filtering users.
+- Editing user data.
+- Deleting a user.
+- Mark todo as completed.
+
+## Structure
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
