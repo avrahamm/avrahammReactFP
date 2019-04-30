@@ -5,11 +5,12 @@ The data is taken from
 - https://jsonplaceholder.typicode.com/users
 - https://jsonplaceholder.typicode.com/todos
 - https://jsonplaceholder.typicode.com/posts
+<p> 
 The data is fetched and stored in Redux store on each page load
 and is not saved to next page load.
 
 Users are on the left side, todos and posts on the right side.
-
+</p>
 Functionality:
 - add a  user, todo or a post.
 - filtering users.
