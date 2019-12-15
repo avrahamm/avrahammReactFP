@@ -18,34 +18,33 @@ class App extends Component {
      */
     componentDidMount()
     {
-//@link:https://stackoverflow.com/questions/24586110/resolve-promises-one-after-another-i-e-in-sequence
-        let p = Promise.resolve();
-        p.then(() => {
-            return DAL.getData('https://jsonplaceholder.typicode.com/users')
-                .then(resp => {
-                    //console.log(resp.data);
-                    this.props.dispatch({type:'INIT_USERS',  'newData':resp.data } )
-                } );
-        })
-        .then(() => {
-            return DAL.getData('https://jsonplaceholder.typicode.com/posts')
-                .then(resp => {
-                    //console.log(resp.data);
-                    this.props.dispatch({type:'INIT_POSTS', 'newData':resp.data } )
-                } );
-        })
-        .then(() => {
-            return DAL.getData('https://jsonplaceholder.typicode.com/todos')
-                .then(resp => {
-                    //console.log(resp.data);
-                    this.props.dispatch({type:'INIT_TODOS', 'newData':resp.data } )
-                } );
-        })
-        .then(() => {
-            // To commit end of initialization.
-            return this.props.dispatch({type:'INIT_COMMIT',  } )
-        })
-        ;
+        let users = DAL.getData('https://jsonplaceholder.typicode.com/users');
+        let posts = DAL.getData('https://jsonplaceholder.typicode.com/posts');
+        let todos = DAL.getData('https://jsonplaceholder.typicode.com/todos');
+
+        Promise.all([ users,posts, todos])
+            .then((responseData) => {
+                const [usersDataObj,postsDataObj,todosDataObj] = responseData;
+                const [usersData,postsData,todosData] = [usersDataObj.data,postsDataObj.data,todosDataObj.data];
+                console.log(usersData,postsData,todosData);
+                Promise.resolve()
+                    .then( () => {
+                        return this.props.dispatch({type:'INIT_USERS',  'newData':usersData } );
+                    })
+                    .then( () => {
+                        return this.props.dispatch({type:'INIT_POSTS', 'newData':postsData } );
+                    })
+                    .then( () => {
+                        return this.props.dispatch({type:'INIT_TODOS',  'newData':todosData } );
+                    })
+                    .then(() => {
+                        // To commit end of initialization.
+                        return this.props.dispatch({type:'INIT_COMMIT',  } )
+                    })
+            })
+            .catch( error => {
+                console.log('Failed to fetch data!');
+            });
     }
 
   render() {
