@@ -5,9 +5,10 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import App from './App';
+//@link: https://redux.js.org/introduction/why-rtk-is-redux-today
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import mainreducer from './Redux/mainreducer';
+import mainreducer from './reducers/mainreducer';
 
 const appStore = createStore(mainreducer,
     /* preloadedState, */

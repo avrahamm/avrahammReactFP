@@ -5,14 +5,14 @@
  * @returns {{searchString: string, maxTodoId: number, maxPostId: number, todos: Array, maxUserId: number, posts: Array, users: Array, selectedUserId: number}|({searchString, maxTodoId, maxPostId, todos, maxUserId, posts, users, selectedUserId}&{maxUserId: *, users: *})|({searchString, maxTodoId, maxPostId, todos, maxUserId, posts, users, selectedUserId}&{maxUserId, users})|*|({searchString, maxTodoId, maxPostId, todos, maxUserId, posts, users, selectedUserId}&{maxUserId, users}&{selectedUserId: *})|*}
  */
 const mainreducer = (state = {
-    users:[],
-    posts:[],
-    todos:[],
+    users:[], // users
+    posts:[], // posts
+    todos:[], //todos
     searchString:"",
-    selectedUserId:0,
-    maxUserId:0,
-    maxPostId:0,
-    maxTodoId:0,
+    selectedUserId:0, // users
+    maxUserId:0, // users
+    maxPostId:0, // posts
+    maxTodoId:0, //todos
 }, action) => {
     // action={type:'ADD', 'newData':data }
     switch (action.type) {

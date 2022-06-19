@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import  { connect } from 'react-redux';
 import {Switch,Route} from 'react-router-dom' ;
 import './App.css';
@@ -11,7 +11,7 @@ import SearchFilter from './Components/SearchFilter/SearchFilter';
 /**
  * Main Component loads data and starts routing tree.
  */
-class App extends Component {
+function App() {
 
     /**
      * To get data from the web and send to redux store.
@@ -47,7 +47,6 @@ class App extends Component {
             });
     }
 
-  render() {
     return (
       <div className="App flex">
           <div className={"section Main"}>
@@ -62,7 +61,6 @@ class App extends Component {
           </div>
       </div>
     );
-  }
 }
 //withRouter(
 //@link:https://stackoverflow.com/questions/44356360/react-router-work-on-reload-but-not-when-clicking-on-a-link
