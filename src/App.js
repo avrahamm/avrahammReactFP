@@ -1,5 +1,5 @@
 import * as React from 'react';
-import  { connect } from 'react-redux';
+import  { useDispatch } from 'react-redux';
 import {Switch,Route} from 'react-router-dom' ;
 import './App.css';
 import ShowUsers from './Components/ShowUsers/ShowUsers';
@@ -11,13 +11,12 @@ import SearchFilter from './Components/SearchFilter/SearchFilter';
 /**
  * Main Component loads data and starts routing tree.
  */
-function App() {
-
+export default function App() {
+    const dispatch = useDispatch();
     /**
      * To get data from the web and send to redux store.
      */
-    componentDidMount()
-    {
+    React.useEffect( () => {
         let users = DAL.getData('https://jsonplaceholder.typicode.com/users');
         let posts = DAL.getData('https://jsonplaceholder.typicode.com/posts');
         let todos = DAL.getData('https://jsonplaceholder.typicode.com/todos');
@@ -29,23 +28,23 @@ function App() {
                 console.log(usersData,postsData,todosData);
                 Promise.resolve()
                     .then( () => {
-                        return this.props.dispatch({type:'INIT_USERS',  'newData':usersData } );
+                        return dispatch({type:'INIT_USERS',  'newData':usersData } );
                     })
                     .then( () => {
-                        return this.props.dispatch({type:'INIT_POSTS', 'newData':postsData } );
+                        return dispatch({type:'INIT_POSTS', 'newData':postsData } );
                     })
                     .then( () => {
-                        return this.props.dispatch({type:'INIT_TODOS',  'newData':todosData } );
+                        return dispatch({type:'INIT_TODOS',  'newData':todosData } );
                     })
                     .then(() => {
                         // To commit end of initialization.
-                        return this.props.dispatch({type:'INIT_COMMIT',  } )
+                        return dispatch({type:'INIT_COMMIT',  } )
                     })
             })
             .catch( error => {
                 console.log('Failed to fetch data!');
             });
-    }
+    }, []);
 
     return (
       <div className="App flex">
@@ -66,4 +65,3 @@ function App() {
 //@link:https://stackoverflow.com/questions/44356360/react-router-work-on-reload-but-not-when-clicking-on-a-link
 //@link:https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/redux.md#blocked-updates
 // export default withRouter(connect()(App));
-export default (connect()(App));
