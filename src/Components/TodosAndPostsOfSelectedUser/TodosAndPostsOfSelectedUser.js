@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Switch,Route} from 'react-router-dom' ;
 
 import './TodosAndPostsOfSelectedUser.css';
@@ -10,9 +10,7 @@ import AddPost from "../AddPost/AddPost";
 /**
  * Root Point of routing at the right side of page.
  */
-class TodosAndPostsOfSelectedUser extends Component {
-
-  render() {
+export default function TodosAndPostsOfSelectedUser() {
     return (
         <div className={"TodosAndPosts"}>
             <div className={"fluid-container"}>
@@ -27,6 +25,4 @@ class TodosAndPostsOfSelectedUser extends Component {
             </div>
         </div>
     );
-  }
 }
-export default TodosAndPostsOfSelectedUser;
