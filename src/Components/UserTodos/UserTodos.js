@@ -10,7 +10,7 @@ export default function UserTodos() {
     const match = useRouteMatch();
     let {userId} = useParams();
     userId = Number.parseInt(userId);
-
+    const userTodos = useSelector(state => state.todos[userId]);
     const selectedUserId = useSelector(state => state.selectedUserId);
     //for direct loading, not by selecting user - wil be redirected.
     if (!selectedUserId || // 0 means no user was selected - direct navigation.
@@ -18,14 +18,16 @@ export default function UserTodos() {
     ) {
         history.push('/');
     }
-
-    const userTodos = useSelector(state => state.todos[userId]);
-
+    let userTodosArray = [];
     //console.log("UserTodos render");
-    let userTodosArray = userTodos.map((todo, index) => {
-            return <TodoComp key={index} todo={todo}/>;
-        }
-    );
+
+    if (userTodos) {
+        userTodosArray = userTodos.map((todo, index) => {
+                return <TodoComp key={index} todo={todo}
+                />;
+            }
+        );
+    }
     return (
         <div className="UserTodos">
             <div className="UserTodosHeader">

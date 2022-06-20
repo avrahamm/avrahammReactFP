@@ -10,7 +10,7 @@ export default function UserPosts() {
     const match = useRouteMatch();
     let {userId} = useParams();
     userId = Number.parseInt(userId);
-
+    const userPosts = useSelector(state => state.posts[userId]);
     const selectedUserId = useSelector(state => state.selectedUserId);
     //for direct loading, not by selecting user - wil be redirected.
     if (!selectedUserId || // 0 means no user was selected - direct navigation.
@@ -19,13 +19,14 @@ export default function UserPosts() {
         history.push('/');
     }
 
-    const userPosts = useSelector(state => state.posts[userId]);
-
+    let userPostsArray = [];
     //console.log("UserTodos render");
-    let userPostsArray = userPosts.map((post, index) => {
-            return <PostComp key={index} post={post}/>;
-        }
-    );
+    if (userPosts) {
+        userPostsArray = userPosts.map((post, index) => {
+                return <PostComp key={index} post={post}/>;
+            }
+        );
+    }
     return (
         <div className="UserPosts">
             <div className="UserPostsHeader">
