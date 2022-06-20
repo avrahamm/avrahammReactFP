@@ -144,16 +144,17 @@ const mainreducer = (state = {
             let userId = action.userId;
             let todoId = action.todoId;
             let completedValue = action.completedValue;
+            state = {...state}; // mutation and broadcasting
+            state.todos = [...state.todos];
+            state.todos[userId] = [...state.todos[userId]];
             let updatedTodoIndex = state.todos[userId].findIndex((todo) =>
             {
                 return todo.id === todoId;
             });
-
             // mutate updated item
             let updatedTodo = {...state.todos[userId][updatedTodoIndex]};
             updatedTodo.completed = completedValue;
             state.todos[userId][updatedTodoIndex] = updatedTodo;
-            state = {...state}; // mutation and broadcasting
             return state;
         }
 
