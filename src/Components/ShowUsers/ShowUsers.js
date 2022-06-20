@@ -11,10 +11,9 @@ export default function ShowUsers() {
     const users = useSelector(state => filterFromUndefined(state.users));
     const todos = useSelector(state => state.todos);
     const selectedUserId = useSelector(state => state.selectedUserId);
-    const searchString = useSelector(state => state.searchString.toLowerCase());
+    const searchString = useSelector(state => state.searchString);
 
     //console.log("ShowUsers Render()");
-    let userComps = [];
     let filteredUsers = users;
     let filterString = searchString;
 
@@ -27,7 +26,7 @@ export default function ShowUsers() {
         });
     }
 
-    userComps = filteredUsers.map((user, index) => {
+    let userComps = filteredUsers.map((user) => {
         let userId = user.id;
         let userTasksStatus = "completedTasks";
         if (Array.isArray(todos[userId])) {
@@ -47,7 +46,7 @@ export default function ShowUsers() {
             tasksStatus: userTasksStatus,
             selectedUserId: selectedUserId
         };
-        return <UserComp key={index}
+        return <UserComp key={userId}
                          userData={userData}/>
     });
 

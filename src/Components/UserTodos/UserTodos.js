@@ -22,8 +22,8 @@ export default function UserTodos() {
     //console.log("UserTodos render");
 
     if (userTodos) {
-        userTodosArray = userTodos.map((todo, index) => {
-                return <TodoComp key={index} todo={todo}
+        userTodosArray = userTodos.map((todo) => {
+                return <TodoComp key={todo.id} todo={todo}
                 />;
             }
         );

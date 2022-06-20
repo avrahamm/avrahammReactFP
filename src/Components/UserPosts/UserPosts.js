@@ -22,8 +22,8 @@ export default function UserPosts() {
     let userPostsArray = [];
     //console.log("UserTodos render");
     if (userPosts) {
-        userPostsArray = userPosts.map((post, index) => {
-                return <PostComp key={index} post={post}/>;
+        userPostsArray = userPosts.map((post) => {
+                return <PostComp key={post.id} post={post}/>;
             }
         );
     }

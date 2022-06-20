@@ -10,11 +10,11 @@ export default function UserComp({userData}) {
         userId, tasksStatus, selectedUserId
     } = userData;
 
-    const [name,   setName]   = React.useState(userData.name);
-    const [email,  setEmail]  = React.useState(userData.email);
-    const [street, setStreet] = React.useState(userData.street);
-    const [city,   setCity]   = React.useState(userData.city);
-    const [zipcode,setZipcode]= React.useState(userData.zipcode);
+    const [name,   setName]   = React.useState(() => userData.name);
+    const [email,  setEmail]  = React.useState(() => userData.email);
+    const [street, setStreet] = React.useState(() => userData.street);
+    const [city,   setCity]   = React.useState(() => userData.city);
+    const [zipcode,setZipcode]= React.useState(() => userData.zipcode);
     const [otherDataVisible, setOtherDataVisible] = React.useState(false);
 
     const showOtherData = (e) => {
