@@ -6,13 +6,18 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import App from './App';
 //@link: https://redux.js.org/introduction/why-rtk-is-redux-today
-import { createStore } from 'redux';
+import {compose, legacy_createStore} from 'redux';
 import { Provider } from 'react-redux';
 import mainreducer from './reducers/mainreducer';
+import middleware from './middleware';
 
-const appStore = createStore(mainreducer,
-    /* preloadedState, */
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const appStore = legacy_createStore(mainreducer,
+    /* preloadedState, */ undefined,
+    compose(
+        middleware,
+    window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__()
+    ),);
 
 ReactDOM.render(
     <Provider store={appStore}>

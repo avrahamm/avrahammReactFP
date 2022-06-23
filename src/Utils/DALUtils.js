@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-let getData = (url) =>
+export const getData = (url) =>
 {
     return axios.get(url);
 }
-
-export default {getData};

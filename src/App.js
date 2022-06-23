@@ -1,10 +1,11 @@
 import * as React from 'react';
 import  { useDispatch } from 'react-redux';
 import {Switch,Route} from 'react-router-dom' ;
+
 import './App.css';
 import ShowUsers from './Components/ShowUsers/ShowUsers';
 import TodosAndPostsOfSelectedUser from './Components/TodosAndPostsOfSelectedUser/TodosAndPostsOfSelectedUser';
-import DAL from "./Utils/DALUtils";
+import { handleInitialData } from './actions/shared'
 import AddUser from "./Components/AddUser/AddUser";
 import SearchFilter from './Components/SearchFilter/SearchFilter';
 
@@ -13,38 +14,10 @@ import SearchFilter from './Components/SearchFilter/SearchFilter';
  */
 export default function App() {
     const dispatch = useDispatch();
-    /**
-     * To get data from the web and send to redux store.
-     */
-    React.useEffect( () => {
-        let users = DAL.getData('https://jsonplaceholder.typicode.com/users');
-        let posts = DAL.getData('https://jsonplaceholder.typicode.com/posts');
-        let todos = DAL.getData('https://jsonplaceholder.typicode.com/todos');
 
-        Promise.all([ users,posts, todos])
-            .then((responseData) => {
-                const [usersDataObj,postsDataObj,todosDataObj] = responseData;
-                const [usersData,postsData,todosData] = [usersDataObj.data,postsDataObj.data,todosDataObj.data];
-                console.log(usersData,postsData,todosData);
-                Promise.resolve()
-                    .then( () => {
-                        return dispatch({type:'INIT_USERS',  'newData':usersData } );
-                    })
-                    .then( () => {
-                        return dispatch({type:'INIT_POSTS', 'newData':postsData } );
-                    })
-                    .then( () => {
-                        return dispatch({type:'INIT_TODOS',  'newData':todosData } );
-                    })
-                    .then(() => {
-                        // To commit end of initialization.
-                        return dispatch({type:'INIT_COMMIT',  } )
-                    })
-            })
-            .catch( error => {
-                console.log('Failed to fetch data!');
-            });
-    }, []);
+    React.useEffect(() => {
+        dispatch(handleInitialData())
+    }, [dispatch])
 
     return (
       <div className="App flex">
