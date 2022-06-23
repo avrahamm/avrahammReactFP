@@ -13,6 +13,7 @@ export default function users(state = {
         }
 
         case 'UPDATE_USER' : {
+            //TODO! refactor with thunk handleUpdateUser
             let updatedUserData = action.updatedUserData;
             let updatedUserId = updatedUserData.userId;
 
@@ -23,6 +24,7 @@ export default function users(state = {
             return state;
         }
         case 'DELETE_USER' : {
+            //TODO! refactor with thunk handleDeleteUser
             /**
              * delete operator causes deleted cells to appear as "undefined".
              */
@@ -40,6 +42,7 @@ export default function users(state = {
         // { type: 'ADD_TODO',userId:userId, title: title }
 
         case 'ADD_USER' : {
+            //TODO! refactor with thunk handleAddUser
             let name = action.name;
             let email = action.email;
             state = {...state}; // mutation and broadcasting

@@ -17,6 +17,7 @@ export default function posts(state = {
         }
 
         case 'DELETE_USER' : {
+            //TODO! after thunk handleDeleteUser completed
             /**
              * delete operator causes deleted cells to appear as "undefined".
              */
@@ -29,6 +30,7 @@ export default function posts(state = {
 
         // { type: 'ADD_POST',userId:userId, title: title, body:body }
         case 'ADD_POST' : {
+            //TODO! after thunk handleAddPost completed
             let userId = action.userId;
             let title = action.title;
             let body = action.body;
@@ -46,7 +48,7 @@ export default function posts(state = {
         }
 
         case 'ADD_USER' : {
-            // TODO!
+            //TODO! after thunk addDeleteUser completed
             let newUserId = action.newUserId;
             state = {...state}; // mutation and broadcasting
             state.posts[newUserId] = [];
