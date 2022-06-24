@@ -2,14 +2,16 @@ import * as React from 'react';
 import {useSelector} from 'react-redux';
 import UserComp from '../UserComp/UserComp';
 import './ShowUsers.css';
-import {filterFromUndefined} from "../../Utils/CommonUtils";
+import {convertObjectToItemsArray} from "../../Utils/CommonUtils";
 
 /**
  * Container connected to redux to pull, hold and render Users list.
  */
 export default function ShowUsers() {
-    const users = useSelector(state => filterFromUndefined(state.users));
-    const todos = useSelector(state => state.todos);
+    const users = useSelector(state =>
+        convertObjectToItemsArray(state.users));
+    const todos = useSelector(state =>
+        convertObjectToItemsArray(state.todos));
     const selectedUserId = useSelector(state => state.selectedUserId);
     const searchString = useSelector(state => state.searchString);
 

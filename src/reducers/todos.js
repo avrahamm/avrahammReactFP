@@ -19,10 +19,6 @@ export default function todos(state = {
         }
 
         case DELETE_USER : {
-            /**
-             * delete operator causes deleted cells to appear as "undefined".
-             */
-            //TODO! after thunk handleDeleteUser completed
             let userId = action.userId;
             state = {...state}; // mutation and broadcasting
             delete  state.todos[userId];
@@ -49,8 +45,7 @@ export default function todos(state = {
         }
 
         case ADD_USER : {
-            //TODO! after thunk handleAddUser completed
-            let newUserId = action.newUserId;
+            let newUserId = action.id;
             state = {...state}; // mutation and broadcasting
             state.todos[newUserId] = [];
             return state;

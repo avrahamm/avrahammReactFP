@@ -1,9 +1,14 @@
-// export default function filterFromUndefined (array)
-export function filterFromUndefined (array)
+export function convertArrayToObject(items) {
+    const obj = {};
+    if (Array.isArray(items)) {
+        items.forEach(item => {
+            obj[item.id] = item;
+        })
+    }
+    return obj;
+}
+
+export function convertObjectToItemsArray(obj)
 {
-    let filteredItems = array.filter(item =>
-    {
-        return (item !== "undefined");
-    });
-    return filteredItems;
+    return Object.keys(obj).map(id => obj[id]);
 }

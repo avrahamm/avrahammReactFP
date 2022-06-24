@@ -5,12 +5,20 @@ import {
     _createTodo, _setTodoStatus,
 } from "./JSonpDAL";
 
+import {convertArrayToObject} from "./CommonUtils";
+
 export function getInitialData () {
     return Promise.all([
         _getUsers(),
         _getPosts(),
         _getTodos()
-    ]);
+    ])
+    .then(([usersArray, postsArray, todosArray]) => ({
+        users: convertArrayToObject(usersArray),
+        posts: convertArrayToObject(postsArray),
+        todos: convertArrayToObject(todosArray),
+    }))
+        ;
 }
 
 export function createUser({name,email}) {
