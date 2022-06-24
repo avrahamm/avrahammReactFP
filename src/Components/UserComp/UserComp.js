@@ -2,6 +2,11 @@ import * as React from 'react';
 import {useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import './UserComp.css';
+import {
+    handleDeleteUserThunk,
+    handleUpdateUserThunk,
+    selectUserAction
+} from "../../actions/users";
 
 export default function UserComp({userData}) {
     const dispatch = useDispatch();
@@ -31,7 +36,7 @@ export default function UserComp({userData}) {
 
     // dispatching plain actions
     const deleteUser = (userId) => {
-        dispatch({type: 'DELETE_USER', userId: userId})
+        dispatch(handleDeleteUserThunk(userId));
     }
 
     const updateUser = () => {
@@ -43,11 +48,11 @@ export default function UserComp({userData}) {
             city,
             zipcode,
         }
-        dispatch({type: 'UPDATE_USER', updatedUserData});
+        dispatch( handleUpdateUserThunk(updatedUserData));
     }
 
     const selectUser = (userId) => {
-        dispatch({type: 'SELECT_USER', userId: userId});
+        dispatch(selectUserAction(userId));
     }
 
     //console.log("UserComp render userId = " + userId);

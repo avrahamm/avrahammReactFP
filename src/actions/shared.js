@@ -1,4 +1,5 @@
 import {getInitialData} from '../Utils/api'
+import { initUsersAction } from "./users"
 
 export function handleInitialData() {
     return (dispatch) => {
@@ -10,7 +11,7 @@ export function handleInitialData() {
                 console.log(usersData, postsData, todosData);
                 Promise.resolve()
                     .then(() => {
-                        return dispatch({type: 'INIT_USERS', 'newData': usersData});
+                        return dispatch(initUsersAction (usersData));
                     })
                     .then(() => {
                         return dispatch({type: 'INIT_POSTS', 'newData': postsData});

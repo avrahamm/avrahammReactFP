@@ -2,6 +2,7 @@ import * as React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import './AddUser.css';
+import {handleAddUserThunk} from "../../actions/users";
 
 export default function AddUser() {
 
@@ -34,7 +35,7 @@ export default function AddUser() {
             setEmailError('emailError')
             return;
         }
-        dispatch({type: 'ADD_USER', name: name, email: email});
+        dispatch(handleAddUserThunk(name, email));
         // reset relevant local storage.
         localStorage[`addUser-name`] = "";
         localStorage[`addUser-email`] = "";

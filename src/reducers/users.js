@@ -1,3 +1,5 @@
+import {ADD_USER, DELETE_USER, INIT_USERS, SELECT_USER, UPDATE_USER} from "../actions/users";
+
 export default function users(state = {
     users:[],
     maxUserId: 0,
@@ -5,14 +7,14 @@ export default function users(state = {
 }, action) {
     // action={type:'ADD', 'newData':data }
     switch (action.type) {
-        case 'INIT_USERS' : {
+        case INIT_USERS : {
             let rawUsersData = action.newData;
             let [maxUserId,usersDataByUserId] = getUsersDataByUserId(rawUsersData);
             state = {...state,users:usersDataByUserId,maxUserId:maxUserId};
             return state;
         }
 
-        case 'UPDATE_USER' : {
+        case UPDATE_USER : {
             //TODO! refactor with thunk handleUpdateUser
             let updatedUserData = action.updatedUserData;
             let updatedUserId = updatedUserData.userId;
@@ -23,7 +25,7 @@ export default function users(state = {
             state.users[updatedUserId] = {...updatedUser};
             return state;
         }
-        case 'DELETE_USER' : {
+        case DELETE_USER : {
             //TODO! refactor with thunk handleDeleteUser
             /**
              * delete operator causes deleted cells to appear as "undefined".
@@ -41,7 +43,7 @@ export default function users(state = {
 
         // { type: 'ADD_TODO',userId:userId, title: title }
 
-        case 'ADD_USER' : {
+        case ADD_USER : {
             //TODO! refactor with thunk handleAddUser
             let name = action.name;
             let email = action.email;
@@ -65,7 +67,7 @@ export default function users(state = {
             return state;
         }
 
-        case 'SELECT_USER' : {
+        case SELECT_USER : {
             // { type : 'SELECT_USER', userId : this.state.userId}
             let selectedUserId = action.userId;
             return {...state, selectedUserId:selectedUserId};
