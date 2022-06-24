@@ -8,8 +8,7 @@ export function handleInitialData() {
         // dispatch(showLoading())
         return getInitialData()
             .then((responseData) => {
-                const [usersDataObj, postsDataObj, todosDataObj] = responseData;
-                const [usersData, postsData, todosData] = [usersDataObj.data, postsDataObj.data, todosDataObj.data];
+                const [usersData, postsData, todosData] = responseData;
                 console.log(usersData, postsData, todosData);
                 Promise.resolve()
                     .then(() => {

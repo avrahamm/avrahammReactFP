@@ -1,5 +1,5 @@
 import {
-    getUsers, getPosts, getTodos,
+    _getUsers, _getPosts, _getTodos,
     _createUser, _deleteUser,  _updateUser,
     _createPost,
     _createTodo, _setTodoStatus,
@@ -7,9 +7,9 @@ import {
 
 export function getInitialData () {
     return Promise.all([
-        getUsers(),
-        getPosts(),
-        getTodos()
+        _getUsers(),
+        _getPosts(),
+        _getTodos()
     ]);
 }
 
