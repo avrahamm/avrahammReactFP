@@ -1,7 +1,8 @@
 import {
     getUsers, getPosts, getTodos,
-    _createUser,
-    _deleteUser, _setTodoStatus, _updateUser, _createTodo
+    _createUser, _deleteUser,  _updateUser,
+    _createPost,
+    _createTodo, _setTodoStatus,
 } from "./JSonpDAL";
 
 export function getInitialData () {
@@ -22,6 +23,10 @@ export function updateUser(updatedUserData) {
 
 export function deleteUser(userId) {
     return _deleteUser(userId);
+}
+
+export function createPost({userId, title, body}) {
+    return _createPost({userId, title, body});
 }
 
 export function createTodo({userId, title}) {
