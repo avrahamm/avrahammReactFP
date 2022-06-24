@@ -2,6 +2,7 @@ import * as React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom';
 import './AddTodo.css';
+import {handleAddTodoThunk} from "../../actions/todos";
 
 export default function AddTodo() {
     const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export default function AddTodo() {
             setTitleError("titleError");
             return;
         }
-        dispatch({ type: 'ADD_TODO',userId:userId, title: title });
+        dispatch(handleAddTodoThunk(userId, title));
         history.push(`/user/${userId}`);
     }
 

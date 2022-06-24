@@ -1,18 +1,14 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
 import './TodoComp.css';
+import {handleSetTodoStatusThunk} from "../../actions/todos";
 
 export default function TodoComp({todo}) {
     //console.log("TodoComp render userId = " + todo.userId + " todo Id = " + todo.id );
     const dispatch = useDispatch();
 
     function setTodoStatus(userId, todoId, status) {
-        dispatch({
-            type: 'SET_TODO_STATUS',
-            userId,
-            todoId,
-            completedValue: status,
-        })
+        dispatch(handleSetTodoStatusThunk(userId, todoId, status));
     }
 
     function markCompleted(e) {

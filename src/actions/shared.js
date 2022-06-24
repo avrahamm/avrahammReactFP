@@ -1,6 +1,7 @@
 import {getInitialData} from '../Utils/api'
 import { initUsersAction } from "./users"
 import {initPostsAction} from "./posts";
+import {initTodosAction} from "./todos";
 
 export function handleInitialData() {
     return (dispatch) => {
@@ -18,7 +19,7 @@ export function handleInitialData() {
                         return dispatch(initPostsAction(postsData));
                     })
                     .then(() => {
-                        return dispatch({type: 'INIT_TODOS', 'newData': todosData});
+                        return dispatch(initTodosAction(todosData));
                     })
                     .then(() => {
                         // To commit end of initialization.

@@ -1,10 +1,13 @@
+import {ADD_USER, DELETE_USER} from "../actions/users";
+import {ADD_TODO, INIT_TODOS, SET_TODO_STATUS} from "../actions/todos";
+
 export default function todos(state = {
     todos:[], //todos
     maxTodoId:0, //todos
 }, action) {
     // action={type:'ADD', 'newData':data }
     switch (action.type) {
-        case 'INIT_TODOS' : {
+        case INIT_TODOS : {
             let todos = action.newData;
             let userIdTodosArray = [], maxTodoId = 0;
             [maxTodoId,userIdTodosArray]= groupItemsByUserId(todos, state.users);
@@ -15,7 +18,7 @@ export default function todos(state = {
             return state;
         }
 
-        case 'DELETE_USER' : {
+        case DELETE_USER : {
             /**
              * delete operator causes deleted cells to appear as "undefined".
              */
@@ -28,7 +31,7 @@ export default function todos(state = {
 
         // { type: 'ADD_TODO',userId:userId, title: title }
 
-        case 'ADD_TODO' : {
+        case ADD_TODO : {
             //TODO! after thunk handleAddTodo completed
             let userId = action.userId;
             let title = action.title;
@@ -45,7 +48,7 @@ export default function todos(state = {
             return state;
         }
 
-        case 'ADD_USER' : {
+        case ADD_USER : {
             //TODO! after thunk handleAddUser completed
             let newUserId = action.newUserId;
             state = {...state}; // mutation and broadcasting
@@ -54,7 +57,7 @@ export default function todos(state = {
         }
 
 
-        case 'SET_TODO_STATUS' : {
+        case SET_TODO_STATUS : {
             //TODO! after thunk handleSetTodoStatus completed
             let userId = action.userId;
             let todoId = action.todoId;

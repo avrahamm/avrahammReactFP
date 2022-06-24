@@ -43,3 +43,18 @@ export async function _createPost({userId, title, body}) {
         userId, title, body
     };
 }
+
+export async function _createTodo({userId, title}) {
+    // faking
+    const id = Math.random()*10000;
+    return {
+        id,
+        userId, title
+    };
+}
+
+export async function _setTodoStatus({userId, todoId, completedValue}) {
+    // faking
+    return {userId, todoId, completedValue} ;
+}
+
