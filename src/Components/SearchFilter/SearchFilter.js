@@ -2,6 +2,7 @@ import React from 'react';
 import {useDispatch} from 'react-redux';
 import './SearchFilter.css';
 import {Link} from "react-router-dom";
+import {SET_SEARCH_STRING} from "../../actions/filter";
 
 /**
  * To filter users by name or email.
@@ -11,7 +12,7 @@ export default function SearchFilter(props) {
     const dispatch = useDispatch();
 
     function setSearchString(searchString) {
-        dispatch({type: 'SET_SEARCH_STRING', searchString: searchString});
+        dispatch({type: SET_SEARCH_STRING, searchString: searchString});
     }
 
     return (
