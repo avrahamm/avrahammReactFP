@@ -2,6 +2,7 @@ import * as React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom';
 import './AddPost.css';
+import {handleAddPostThunk} from "../../actions/posts";
 
 export default function AddPost() {
     const dispatch = useDispatch();
@@ -33,7 +34,7 @@ export default function AddPost() {
             setBodyError("bodyError");
             return;
         }
-        dispatch({type: 'ADD_POST', userId: userId, title: title, body: body});
+        dispatch(handleAddPostThunk(userId, title, body));
         history.push(`/user/${userId}`);
     }
 

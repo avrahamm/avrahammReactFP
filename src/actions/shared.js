@@ -1,5 +1,6 @@
 import {getInitialData} from '../Utils/api'
 import { initUsersAction } from "./users"
+import {initPostsAction} from "./posts";
 
 export function handleInitialData() {
     return (dispatch) => {
@@ -14,7 +15,7 @@ export function handleInitialData() {
                         return dispatch(initUsersAction (usersData));
                     })
                     .then(() => {
-                        return dispatch({type: 'INIT_POSTS', 'newData': postsData});
+                        return dispatch(initPostsAction(postsData));
                     })
                     .then(() => {
                         return dispatch({type: 'INIT_TODOS', 'newData': todosData});

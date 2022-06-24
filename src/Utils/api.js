@@ -23,3 +23,7 @@ export function updateUser(updatedUserData) {
 export function deleteUser(userId) {
     return _deleteUser(userId);
 }
+
+export function createPost({userId, title, body}) {
+    return _createPost({userId, title, body});
+}

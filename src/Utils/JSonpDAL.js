@@ -34,3 +34,12 @@ export async function _deleteUser(userId) {
     // faking
     return Math.random()*10 > 7;
 }
+
+export async function _createPost({userId, title, body}) {
+    // faking
+    const id = Math.random()*10000;
+    return {
+        id,
+        userId, title, body
+    };
+}

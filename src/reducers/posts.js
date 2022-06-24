@@ -1,10 +1,13 @@
+import {ADD_USER, DELETE_USER} from "../actions/users";
+import {ADD_POST, INIT_POSTS} from "../actions/posts";
+
 export default function posts(state = {
     posts:[],
     maxPostId: 0
 }, action) {
     // action={type:'ADD', 'newData':data }
     switch (action.type) {
-        case 'INIT_POSTS' : {
+        case INIT_POSTS : {
             let posts = action.newData;
             let userIdPostsArray = [], maxPostId = 0;
 
@@ -16,7 +19,7 @@ export default function posts(state = {
             return state;
         }
 
-        case 'DELETE_USER' : {
+        case DELETE_USER : {
             //TODO! after thunk handleDeleteUser completed
             /**
              * delete operator causes deleted cells to appear as "undefined".
@@ -29,7 +32,7 @@ export default function posts(state = {
         }
 
         // { type: 'ADD_POST',userId:userId, title: title, body:body }
-        case 'ADD_POST' : {
+        case ADD_POST : {
             //TODO! after thunk handleAddPost completed
             let userId = action.userId;
             let title = action.title;
@@ -47,7 +50,7 @@ export default function posts(state = {
             return state;
         }
 
-        case 'ADD_USER' : {
+        case ADD_USER : {
             //TODO! after thunk addDeleteUser completed
             let newUserId = action.newUserId;
             state = {...state}; // mutation and broadcasting
