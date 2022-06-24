@@ -28,9 +28,10 @@ export function deleteUserAction(userId) {
   }
 }
 
-export function addUserAction (name, email) {
+export function addUserAction({id, name, email}) {
   return {
     type: ADD_USER,
+    id,
     name,
     email,
   }
