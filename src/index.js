@@ -8,10 +8,12 @@ import App from './App';
 //@link: https://redux.js.org/introduction/why-rtk-is-redux-today
 import {compose, legacy_createStore} from 'redux';
 import { Provider } from 'react-redux';
-import mainreducer from './reducers/mainreducer';
+// import mainreducer from './reducers/mainreducer';
+import reducer from './reducers'
 import middleware from './middleware';
 
-const appStore = legacy_createStore(mainreducer,
+const appStore = legacy_createStore(
+    reducer,
     /* preloadedState, */ undefined,
     compose(
         middleware,
