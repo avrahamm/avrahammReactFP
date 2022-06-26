@@ -5,7 +5,7 @@ import {
     _createTodo, _setTodoStatus,
 } from "./JSonpDAL";
 
-import {convertArrayToObject} from "./CommonUtils";
+import {convertArrayToObject, groupItemsByUserId} from "./CommonUtils";
 
 export function getInitialData () {
     return Promise.all([
@@ -15,8 +15,8 @@ export function getInitialData () {
     ])
     .then(([usersArray, postsArray, todosArray]) => ({
         users: convertArrayToObject(usersArray),
-        posts: convertArrayToObject(postsArray),
-        todos: convertArrayToObject(todosArray),
+        posts: groupItemsByUserId(postsArray),
+        todos: groupItemsByUserId(todosArray),
     }))
         ;
 }

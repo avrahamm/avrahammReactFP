@@ -9,11 +9,11 @@ import {convertObjectToItemsArray} from "../../Utils/CommonUtils";
  */
 export default function ShowUsers() {
     const users = useSelector(state =>
-        convertObjectToItemsArray(state.users));
+        convertObjectToItemsArray(state.users.users));
     const todos = useSelector(state =>
-        convertObjectToItemsArray(state.todos));
-    const selectedUserId = useSelector(state => state.selectedUserId);
-    const searchString = useSelector(state => state.searchString);
+        convertObjectToItemsArray(state.todos.todos));
+    const selectedUserId = useSelector(state => state.users.selectedUserId);
+    const searchString = useSelector(state => state.filter.searchString);
 
     //console.log("ShowUsers Render()");
     let filteredUsers = users;

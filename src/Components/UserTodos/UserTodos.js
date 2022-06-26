@@ -4,14 +4,17 @@ import {Link, useHistory, useParams, useRouteMatch} from 'react-router-dom';
 
 import TodoComp from '../TodoComp/TodoComp';
 import './UserTodos.css';
+import {convertObjectToItemsArray} from "../../Utils/CommonUtils";
 
 export default function UserTodos() {
     const history = useHistory();
     const match = useRouteMatch();
     let {userId} = useParams();
     userId = Number.parseInt(userId);
-    const userTodos = useSelector(state => state.todos[userId]);
-    const selectedUserId = useSelector(state => state.selectedUserId);
+    const userTodos = useSelector(state =>
+        convertObjectToItemsArray(state.todos.todos[userId])
+    );
+    const selectedUserId = useSelector(state => state.users.selectedUserId);
     //for direct loading, not by selecting user - wil be redirected.
     if (!selectedUserId || // 0 means no user was selected - direct navigation.
         (userId !== selectedUserId) // selected user deleted

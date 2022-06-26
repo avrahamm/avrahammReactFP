@@ -8,17 +8,16 @@ export function handleInitialData() {
         // dispatch(showLoading())
         return getInitialData()
             .then((responseData) => {
-                const [usersData, postsData, todosData] = responseData;
-                console.log(usersData, postsData, todosData);
+                const {users, posts, todos} = responseData;
                 Promise.resolve()
                     .then(() => {
-                        return dispatch(initUsersAction (usersData));
+                        return dispatch(initUsersAction(users));
                     })
                     .then(() => {
-                        return dispatch(initPostsAction(postsData));
+                        return dispatch(initPostsAction(posts));
                     })
                     .then(() => {
-                        return dispatch(initTodosAction(todosData));
+                        return dispatch(initTodosAction(todos));
                     })
                     .then(() => {
                         // To commit end of initialization.
@@ -27,6 +26,7 @@ export function handleInitialData() {
             })
             .catch(error => {
                 console.log('Failed to fetch data!');
+                console.log(error);
             });
     }
 }

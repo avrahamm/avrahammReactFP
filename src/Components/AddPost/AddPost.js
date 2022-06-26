@@ -10,7 +10,7 @@ export default function AddPost() {
     let {userId} = useParams();
     userId = Number.parseInt(userId);
 
-    const selectedUserId = useSelector(state => state.selectedUserId);
+    const selectedUserId = useSelector(state => state.users.selectedUserId);
     //for direct loading, not by selecting user - wil be redirected.
     if (!selectedUserId || // 0 means no user was selected - direct navigation.
         (userId !== selectedUserId) // selected user deleted

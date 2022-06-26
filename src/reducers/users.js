@@ -19,6 +19,7 @@ export default function users(state = {
             let updatedUserId = updatedUserData.userId;
 
             state = {...state}; // mutation and broadcasting
+            state.users = {...state.users};
             let curUser = state.users[updatedUserId];
             let updatedUser = getUpdatedUser(curUser,updatedUserData);
             state.users[updatedUserId] = {...updatedUser};
@@ -26,10 +27,11 @@ export default function users(state = {
         }
         case DELETE_USER : {
             let userId = action.userId;
-            state = {...state}; // mutation and broadcasting
             if (userId === state.selectedUserId){
                 state.selectedUserId = 0;
             }
+            state = {...state}; // mutation and broadcasting
+            state.users = {...state.users}
             delete  state.users[userId];
             return state;
         }
@@ -39,6 +41,7 @@ export default function users(state = {
         case ADD_USER : {
             const {id, name, email} = action;
             state = {...state}; // mutation and broadcasting
+            state.users = {...state.users}
             state.users[id] = {
                 id,
                 name,
