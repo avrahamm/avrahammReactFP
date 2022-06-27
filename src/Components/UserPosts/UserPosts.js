@@ -4,18 +4,23 @@ import {Link, useHistory, useParams, useRouteMatch} from 'react-router-dom';
 
 import PostComp from '../PostComp/PostComp';
 import './UserPosts.css';
-import {convertObjectToItemsArray} from "../../Utils/CommonUtils";
+import {getUserPosts} from "../../Utils/api";
 
 export default function UserPosts() {
     const history = useHistory();
     const match = useRouteMatch();
     let {userId} = useParams();
     userId = Number.parseInt(userId);
-    const userPosts = useSelector(state =>
-        convertObjectToItemsArray(state.posts.posts[userId])
-    );
     const selectedUserId = useSelector(state =>
         state.users.selectedUserId);
+    const [userPosts, setUserPosts] = React.useState([]);
+    React.useEffect( () => {
+        if(!selectedUserId) {
+            return;
+        }
+        getUserPosts(selectedUserId)
+            .then(curUserTodos => setUserPosts(curUserTodos));
+    },[selectedUserId])
     //for direct loading, not by selecting user - wil be redirected.
     if (!selectedUserId || // 0 means no user was selected - direct navigation.
         (userId !== selectedUserId) // selected user deleted
@@ -23,14 +28,12 @@ export default function UserPosts() {
         history.push('/');
     }
 
-    let userPostsArray = [];
     //console.log("UserTodos render");
-    if (userPosts) {
-        userPostsArray = userPosts.map((post) => {
-                return <PostComp key={post.id} post={post}/>;
-            }
-        );
-    }
+    const userPostsArray = userPosts.map((post) => {
+            return <PostComp key={post.id} post={post}/>;
+        }
+    );
+
     return (
         <div className="UserPosts">
             <div className="UserPostsHeader">

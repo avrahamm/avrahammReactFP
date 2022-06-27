@@ -4,33 +4,35 @@ import {Link, useHistory, useParams, useRouteMatch} from 'react-router-dom';
 
 import TodoComp from '../TodoComp/TodoComp';
 import './UserTodos.css';
-import {convertObjectToItemsArray} from "../../Utils/CommonUtils";
+import {getUserTodos} from "../../Utils/api";
 
 export default function UserTodos() {
     const history = useHistory();
     const match = useRouteMatch();
     let {userId} = useParams();
     userId = Number.parseInt(userId);
-    const userTodos = useSelector(state =>
-        convertObjectToItemsArray(state.todos.todos[userId])
-    );
     const selectedUserId = useSelector(state => state.users.selectedUserId);
+
+    const [userTodos, setUserTodos] = React.useState([]);
+    React.useEffect( () => {
+        if(!selectedUserId) {
+            return;
+        }
+        getUserTodos(selectedUserId)
+            .then(curUserTodos => setUserTodos(curUserTodos));
+    },[selectedUserId])
     //for direct loading, not by selecting user - wil be redirected.
     if (!selectedUserId || // 0 means no user was selected - direct navigation.
         (userId !== selectedUserId) // selected user deleted
     ) {
         history.push('/');
     }
-    let userTodosArray = [];
     //console.log("UserTodos render");
+    const userTodosArray = userTodos.map((todo) => {
+            return <TodoComp key={todo.id} todo={todo} />;
+        }
+    );
 
-    if (userTodos) {
-        userTodosArray = userTodos.map((todo) => {
-                return <TodoComp key={todo.id} todo={todo}
-                />;
-            }
-        );
-    }
     return (
         <div className="UserTodos">
             <div className="UserTodosHeader">

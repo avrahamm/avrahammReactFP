@@ -33,7 +33,12 @@ export async function _updateUser(updatedUserData) {
 
 export async function _deleteUser(userId) {
     // faking
-    return Math.random()*10 > 7;
+    // return Math.random()*10 > 7;
+    return true;
+}
+
+export async function _getUserPosts(userId) {
+    return getData(`${apiBaseUrl}/posts?userId=${userId}`);
 }
 
 export async function _createPost({userId, title, body}) {
@@ -43,6 +48,10 @@ export async function _createPost({userId, title, body}) {
         id,
         userId, title, body
     };
+}
+
+export async function _getUserTodos(userId) {
+    return getData(`${apiBaseUrl}/todos?userId=${userId}`);
 }
 
 export async function _createTodo({userId, title}) {
