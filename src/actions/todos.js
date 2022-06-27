@@ -4,13 +4,6 @@ export const INIT_TODOS = 'INIT_TODOS';
 export const ADD_TODO = 'ADD_TODO';
 export const SET_TODO_STATUS = 'SET_TODO_STATUS';
 
-export function initTodosAction(todosData) {
-  return {
-    type: INIT_TODOS,
-    "newData": todosData,
-  }
-}
-
 export function addTodoAction ({id, userId, title, body}) {
   return {
     type: ADD_TODO,

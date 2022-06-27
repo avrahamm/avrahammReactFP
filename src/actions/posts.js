@@ -3,13 +3,6 @@ import {createPost} from '../Utils/api';
 export const INIT_POSTS = 'INIT_POSTS'
 export const ADD_POST = 'ADD_POST'
 
-export function initPostsAction(postsData) {
-  return {
-    type: INIT_POSTS,
-    "newData": postsData,
-  }
-}
-
 export function addPostAction ({id, userId, title, body}) {
   return {
     type: ADD_POST,

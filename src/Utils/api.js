@@ -1,24 +1,18 @@
 import {
-    _getUsers, _getPosts, _getTodos,
+    _getUsers,
     _createUser, _deleteUser, _updateUser,
     _getUserPosts,_createPost,
     _getUserTodos,_createTodo, _setTodoStatus,
 } from "./JSonpDAL";
 
-import {convertArrayToObject, groupItemsByUserId} from "./CommonUtils";
+import {convertArrayToObject} from "./CommonUtils";
 
 export function getInitialData () {
-    return Promise.all([
-        _getUsers(),
-        _getPosts(),
-        _getTodos()
-    ])
-    .then(([usersArray, postsArray, todosArray]) => ({
+    return _getUsers()
+    .then(usersArray => ({
         users: convertArrayToObject(usersArray),
-        posts: groupItemsByUserId(postsArray),
-        todos: groupItemsByUserId(todosArray),
     }))
-        ;
+    ;
 }
 
 export function createUser({name,email}) {

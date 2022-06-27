@@ -8,17 +8,9 @@ export function _getUsers() {
     return getData(`${apiBaseUrl}/users`);
 }
 
-export function _getPosts() {
-    return getData(`${apiBaseUrl}/posts`);
-}
-
-export function _getTodos() {
-    return getData(`${apiBaseUrl}/todos`);
-}
-
 export async function _createUser({name,email}) {
     // faking
-    const id = Math.random()*10000;
+    const id = Math.floor(Math.random()*10000);
     return {
         id,
         name,
@@ -43,7 +35,7 @@ export async function _getUserPosts(userId) {
 
 export async function _createPost({userId, title, body}) {
     // faking
-    const id = Math.random()*10000;
+    const id = Math.floor(Math.random()*10000);
     return {
         id,
         userId, title, body
@@ -56,7 +48,7 @@ export async function _getUserTodos(userId) {
 
 export async function _createTodo({userId, title}) {
     // faking
-    const id = Math.random()*10000;
+    const id = Math.floor(Math.random()*10000);
     return {
         id,
         userId, title

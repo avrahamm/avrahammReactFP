@@ -7,10 +7,10 @@ export const DELETE_USER = 'DELETE_USER'
 export const ADD_USER = 'ADD_USER'
 export const SELECT_USER = 'SELECT_USER'
 
-export function initUsersAction(usersData) {
+export function initUsersAction(users) {
   return {
     type: INIT_USERS,
-    "newData": usersData,
+    users
   }
 }
 

@@ -7,10 +7,9 @@ export default function users(state = {
     users: {},
     selectedUserId:0
 }, action) {
-    // action={type:'ADD', 'newData':data }
     switch (action.type) {
         case INIT_USERS : {
-            state = {...state,users:action.newData};
+            state = {...state,users:action.users};
             return state;
         }
 

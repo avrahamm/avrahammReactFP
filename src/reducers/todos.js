@@ -1,18 +1,11 @@
 import {ADD_USER, DELETE_USER} from "../actions/users";
-import {ADD_TODO, INIT_TODOS, SET_TODO_STATUS} from "../actions/todos";
+import {ADD_TODO, SET_TODO_STATUS} from "../actions/todos";
 
 export default function todos(state = {
     todos:{},
 }, action) {
     // action={type:'ADD', 'newData':data }
     switch (action.type) {
-        case INIT_TODOS : {
-            let key = 'todos';
-            // no mutation,no broadcasting
-            state[key] = action.newData;
-            return state;
-        }
-
         case DELETE_USER : {
             let userId = action.userId;
             state = {...state}; // mutation and broadcasting
