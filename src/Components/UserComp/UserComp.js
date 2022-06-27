@@ -12,7 +12,7 @@ export default function UserComp({userData}) {
     const dispatch = useDispatch();
 
     let {
-        userId, tasksStatus, selectedUserId
+        userId, selectedUserId
     } = userData;
 
     const [name,   setName]   = React.useState(() => userData.name);
@@ -61,7 +61,7 @@ export default function UserComp({userData}) {
     };
     let userSelected = (userId === selectedUserId) ? "userSelected" : "";
     return (
-        <div className={`UserComp ${tasksStatus} ${userSelected}`}>
+        <div className={`UserComp ${userSelected}`}>
             <Link to={`/user/${userId}`}>
                 <div className={"rowDiv id"}
                      onClick={() => selectUser(userId)}

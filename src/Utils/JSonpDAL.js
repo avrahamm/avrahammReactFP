@@ -51,7 +51,8 @@ export async function _createTodo({userId, title}) {
     const id = Math.floor(Math.random()*10000);
     return {
         id,
-        userId, title
+        userId,
+        title
     };
 }
 

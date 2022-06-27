@@ -28,7 +28,9 @@ export function deleteUser(userId) {
 }
 
 export function getUserPosts(userId) {
-    return _getUserPosts(userId);
+    return _getUserPosts(userId)
+        .then(usersPosts => convertArrayToObject(usersPosts))
+        ;
 }
 
 export function createPost({userId, title, body}) {
@@ -36,7 +38,9 @@ export function createPost({userId, title, body}) {
 }
 
 export function getUserTodos(userId) {
-    return _getUserTodos(userId);
+    return _getUserTodos(userId)
+        .then(usersTodos => convertArrayToObject(usersTodos))
+        ;
 }
 
 export function createTodo({userId, title}) {

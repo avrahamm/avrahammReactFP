@@ -1,26 +1,21 @@
-import {ADD_USER, DELETE_USER} from "../actions/users";
-import {ADD_TODO, SET_TODO_STATUS} from "../actions/todos";
+import {ADD_TODO, SET_SELECTED_USER_TODOS, SET_TODO_STATUS} from "../actions/todos";
 
 export default function todos(state = {
+    // selected user todos object
     todos:{},
 }, action) {
-    // action={type:'ADD', 'newData':data }
     switch (action.type) {
-        case DELETE_USER : {
-            let userId = action.userId;
-            state = {...state}; // mutation and broadcasting
-            state.todos = {...state.todos};
-            delete  state.todos[userId];
+        case SET_SELECTED_USER_TODOS: {
+            const {todos} = action;
+            state = {...state,todos:todos}; // mutation and broadcasting
             return state;
         }
-
-        // { type: 'ADD_TODO',userId:userId, title: title }
 
         case ADD_TODO : {
             const {id, userId, title} = action;
             state = {...state}; // mutation and broadcasting
             state.todos = {...state.todos};
-            state.todos[userId][id] = {
+            state.todos[id] = {
                 id,
                 userId,
                 title,
@@ -29,25 +24,14 @@ export default function todos(state = {
             return state;
         }
 
-        case ADD_USER : {
-            let newUserId = action.id;
-            state = {...state}; // mutation and broadcasting
-            state.todos = {...state.todos};
-            state.todos[newUserId] = {};
-            return state;
-        }
-
         case SET_TODO_STATUS : {
-            let userId = action.userId;
-            let todoId = action.todoId;
-            let completedValue = action.completedValue;
+            const { todoId, completedValue } = action;
             state = {...state}; // mutation and broadcasting
             state.todos = {...state.todos};
-            state.todos[userId] = {...state.todos[userId]};
             // mutate updated item
-            let updatedTodo = { ...state.todos[userId][todoId]};
+            let updatedTodo = { ...state.todos[todoId]};
             updatedTodo.completed = completedValue;
-            state.todos[userId][todoId] = updatedTodo;
+            state.todos[todoId] = updatedTodo;
             return state;
         }
 

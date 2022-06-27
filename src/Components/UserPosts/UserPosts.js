@@ -1,26 +1,37 @@
 import * as React from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Link, useHistory, useParams, useRouteMatch} from 'react-router-dom';
 
 import PostComp from '../PostComp/PostComp';
 import './UserPosts.css';
 import {getUserPosts} from "../../Utils/api";
+import {convertObjectToItemsArray} from "../../Utils/CommonUtils";
+import {setSelectedUserPostsAction} from "../../actions/posts";
 
 export default function UserPosts() {
+    const dispatch = useDispatch();
     const history = useHistory();
     const match = useRouteMatch();
     let {userId} = useParams();
     userId = Number.parseInt(userId);
     const selectedUserId = useSelector(state =>
         state.users.selectedUserId);
-    const [userPosts, setUserPosts] = React.useState([]);
+
+    const userPosts = useSelector(state =>
+        convertObjectToItemsArray(state.posts.posts)
+    );
     React.useEffect( () => {
         if(!selectedUserId) {
             return;
         }
+        if (userPosts.length) {
+            return;
+        }
         getUserPosts(selectedUserId)
-            .then(curUserTodos => setUserPosts(curUserTodos));
-    },[selectedUserId])
+            .then(curUserPosts =>
+                dispatch(setSelectedUserPostsAction(curUserPosts))
+            );
+    },[selectedUserId, userPosts, dispatch])
     //for direct loading, not by selecting user - wil be redirected.
     if (!selectedUserId || // 0 means no user was selected - direct navigation.
         (userId !== selectedUserId) // selected user deleted
@@ -29,7 +40,8 @@ export default function UserPosts() {
     }
 
     //console.log("UserTodos render");
-    const userPostsArray = userPosts.map((post) => {
+    const userPostsArray = userPosts
+        .map((post) => {
             return <PostComp key={post.id} post={post}/>;
         }
     );

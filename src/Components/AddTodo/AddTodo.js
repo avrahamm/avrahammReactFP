@@ -32,7 +32,6 @@ export default function AddTodo() {
         history.push(`/user/${userId}`);
     }
 
-
     return(
         <div className={"AddTodo"}>
 
