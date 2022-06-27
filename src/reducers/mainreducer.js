@@ -1,4 +1,7 @@
 /**
+ * Old first version..
+ * Not in use.
+ *
  * Main Reducer to hold app state.
  * @param state
  * @param action
