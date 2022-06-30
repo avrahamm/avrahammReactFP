@@ -35,7 +35,7 @@ export async function _getUserPosts(userId) {
 
 export async function _createPost({userId, title, body}) {
     // faking
-    const id = Math.floor(Math.random()*10000);
+    const id = 10000 + Math.floor(Math.random()*10000);
     return {
         id,
         userId, title, body
@@ -48,7 +48,7 @@ export async function _getUserTodos(userId) {
 
 export async function _createTodo({userId, title}) {
     // faking
-    const id = Math.floor(Math.random()*10000);
+    const id = 10000 + Math.floor(Math.random()*10000);
     return {
         id,
         userId,

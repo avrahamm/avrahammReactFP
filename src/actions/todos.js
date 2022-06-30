@@ -1,12 +1,12 @@
 import {createTodo, setTodoStatus} from '../Utils/api';
 
-export const SET_SELECTED_USER_TODOS = 'SET_SELECTED_USER_TODOS';
+export const INIT_SELECTED_USER_TODOS = 'SET_SELECTED_USER_TODOS';
 export const ADD_TODO = 'ADD_TODO';
 export const SET_TODO_STATUS = 'SET_TODO_STATUS';
 
-export function setSelectedUserTodosAction (todos) {
+export function initSelectedUserTodosAction (todos) {
   return {
-    type: SET_SELECTED_USER_TODOS,
+    type: INIT_SELECTED_USER_TODOS,
     todos
   }
 }

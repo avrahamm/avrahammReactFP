@@ -6,7 +6,7 @@ import TodoComp from '../TodoComp/TodoComp';
 import './UserTodos.css';
 import {getUserTodos} from "../../Utils/api";
 import {convertObjectToItemsArray} from "../../Utils/CommonUtils";
-import {setSelectedUserTodosAction} from "../../actions/todos";
+import {initSelectedUserTodosAction} from "../../actions/todos";
 
 export default function UserTodos() {
     const dispatch = useDispatch();
@@ -14,34 +14,34 @@ export default function UserTodos() {
     const match = useRouteMatch();
     let {userId} = useParams();
     userId = Number.parseInt(userId);
-    const selectedUserId = useSelector(state => state.users.selectedUserId);
+    const selectedUserId = useSelector(state =>
+        state.users.selectedUserId);
+
+    const todosWereInitialized = useSelector(state =>
+        state.todos.initialized);
 
     const userTodos = useSelector( state =>
         convertObjectToItemsArray(state.todos.todos)
     );
     React.useEffect( () => {
-        if(!selectedUserId) {
+        if (todosWereInitialized) {
             return;
         }
-        if (userTodos.length) {
-            return;
-        }
-        getUserTodos(selectedUserId)
-            .then(curUserTodos => {
-                    console.log('UserTodos useEffect');
-                    console.log(curUserTodos);
-                    console.log('selectedUserId = ');
-                    console.log(selectedUserId);
-                    dispatch(setSelectedUserTodosAction(curUserTodos))
-                }
+        getUserTodos(userId)
+            .then(curUserTodos =>
+                    dispatch(initSelectedUserTodosAction(curUserTodos))
             );
-    },[selectedUserId,userTodos,dispatch]);
+        return function unmount(){
+            console.log('UserTodos React.useEffect unmount');
+        }
+    },[userId, todosWereInitialized, dispatch]);
     //for direct loading, not by selecting user - wil be redirected.
     if (!selectedUserId || // 0 means no user was selected - direct navigation.
         (userId !== selectedUserId) // selected user deleted
     ) {
         history.push('/');
     }
+
     //console.log("UserTodos render");
     const userTodosArray = userTodos
         .map((todo) => {
@@ -55,7 +55,6 @@ export default function UserTodos() {
                 <span className={"label"}>
                     <h4>Todos - User {userId}</h4>
                 </span>
-
                 <span className={"addTodoButton"}>
                     <Link to={`${match.url}/addTodo`}>
                         <input className={"button"} type="button" value={"Add"}/>

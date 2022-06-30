@@ -1,14 +1,24 @@
-import {ADD_TODO, SET_SELECTED_USER_TODOS, SET_TODO_STATUS} from "../actions/todos";
+import {ADD_TODO, INIT_SELECTED_USER_TODOS, SET_TODO_STATUS} from "../actions/todos";
+import {SELECT_USER} from "../actions/users";
 
 export default function todos(state = {
     // selected user todos object
     todos:{},
+    // to make difference between mounting
+    // and loading initial data,
+    //  and redirecting after AddTodo.
+    initialized: false
 }, action) {
     switch (action.type) {
-        case SET_SELECTED_USER_TODOS: {
+        case INIT_SELECTED_USER_TODOS: {
             const {todos} = action;
-            state = {...state,todos:todos}; // mutation and broadcasting
+            // mutation and broadcasting
+            state = {...state,todos:todos, initialized: true};
             return state;
+        }
+
+        case SELECT_USER : {
+            return {...state, initialized: false};
         }
 
         case ADD_TODO : {

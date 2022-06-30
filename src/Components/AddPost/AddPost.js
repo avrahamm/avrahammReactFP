@@ -35,6 +35,7 @@ export default function AddPost() {
             return;
         }
         dispatch(handleAddPostThunk(userId, title, body));
+        // redirect causes new mount of UserPosts
         history.push(`/user/${userId}`);
     }
 

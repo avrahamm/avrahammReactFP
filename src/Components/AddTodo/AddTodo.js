@@ -29,6 +29,7 @@ export default function AddTodo() {
             return;
         }
         dispatch(handleAddTodoThunk(userId, title));
+        // redirect causes new mount of UserTodos
         history.push(`/user/${userId}`);
     }
 
