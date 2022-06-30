@@ -1,40 +1,14 @@
 import * as React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link, useHistory, useParams, useRouteMatch} from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import TodoComp from '../TodoComp/TodoComp';
 import './UserTodos.css';
-import {getUserTodos} from "../../Utils/api";
-import {convertObjectToItemsArray} from "../../Utils/CommonUtils";
-import {initSelectedUserTodosAction} from "../../actions/todos";
+import {useFetchUserItems} from "../../hooks/useFetchUserItems";
 
 export default function UserTodos() {
-    const dispatch = useDispatch();
     const history = useHistory();
-    const match = useRouteMatch();
-    let {userId} = useParams();
-    userId = Number.parseInt(userId);
-    const selectedUserId = useSelector(state =>
-        state.users.selectedUserId);
+    const [userId,selectedUserId, match, userTodos] = useFetchUserItems('todos');
 
-    const todosWereInitialized = useSelector(state =>
-        state.todos.initialized);
-
-    const userTodos = useSelector( state =>
-        convertObjectToItemsArray(state.todos.todos)
-    );
-    React.useEffect( () => {
-        if (todosWereInitialized) {
-            return;
-        }
-        getUserTodos(userId)
-            .then(curUserTodos =>
-                    dispatch(initSelectedUserTodosAction(curUserTodos))
-            );
-        return function unmount(){
-            console.log('UserTodos React.useEffect unmount');
-        }
-    },[userId, todosWereInitialized, dispatch]);
     //for direct loading, not by selecting user - wil be redirected.
     if (!selectedUserId || // 0 means no user was selected - direct navigation.
         (userId !== selectedUserId) // selected user deleted

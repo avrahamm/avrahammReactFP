@@ -29,8 +29,8 @@ export async function _deleteUser(userId) {
     return true;
 }
 
-export async function _getUserPosts(userId) {
-    return getData(`${apiBaseUrl}/posts?userId=${userId}`);
+export async function _getUserItems(userId, itemName) {
+    return getData(`${apiBaseUrl}/${itemName}?userId=${userId}`);
 }
 
 export async function _createPost({userId, title, body}) {
@@ -40,10 +40,6 @@ export async function _createPost({userId, title, body}) {
         id,
         userId, title, body
     };
-}
-
-export async function _getUserTodos(userId) {
-    return getData(`${apiBaseUrl}/todos?userId=${userId}`);
 }
 
 export async function _createTodo({userId, title}) {

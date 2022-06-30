@@ -1,8 +1,9 @@
 import {
     _getUsers,
     _createUser, _deleteUser, _updateUser,
-    _getUserPosts,_createPost,
-    _getUserTodos,_createTodo, _setTodoStatus,
+    _getUserItems,
+    _createPost,
+    _createTodo, _setTodoStatus,
 } from "./JSonpDAL";
 
 import {convertArrayToObject} from "./CommonUtils";
@@ -27,20 +28,14 @@ export function deleteUser(userId) {
     return _deleteUser(userId);
 }
 
-export function getUserPosts(userId) {
-    return _getUserPosts(userId)
-        .then(usersPosts => convertArrayToObject(usersPosts))
+export function getUserItems(userId, itemName) {
+    return _getUserItems(userId, itemName)
+        .then(items => convertArrayToObject(items))
         ;
 }
 
 export function createPost({userId, title, body}) {
     return _createPost({userId, title, body});
-}
-
-export function getUserTodos(userId) {
-    return _getUserTodos(userId)
-        .then(usersTodos => convertArrayToObject(usersTodos))
-        ;
 }
 
 export function createTodo({userId, title}) {

@@ -1,15 +1,8 @@
 import {createPost} from '../Utils/api';
 
-export const INIT_SELECTED_USER_POSTS = 'SET_SELECTED_USER_POSTS';
+export const INIT_SELECTED_USER_POSTS = 'INIT_SELECTED_USER_POSTS';
 export const INIT_POSTS = 'INIT_POSTS'
 export const ADD_POST = 'ADD_POST'
-
-export function initSelectedUserPostsAction (posts) {
-  return {
-    type: INIT_SELECTED_USER_POSTS,
-    posts
-  }
-}
 
 export function addPostAction ({id, userId, title, body}) {
   return {
